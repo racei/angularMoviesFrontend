@@ -1,0 +1,12 @@
+<ul>
+    <li *ngFor="let movie of movies">
+        {{movie.title}}
+        <button (click)="deleteMovie(movie.id)">Delete</button>
+        <img src='assets/91.gif' [hidden]="!thinking">
+    </li>
+</ul>
+
+<div>
+    Add new movie
+    <input type='text' [(ngModel)]="newTitle">
+</div>
