@@ -37,6 +37,11 @@ export class MoviesListComponent implements OnInit {
   }
 
   addMovie() {
+    const newMovie = new Movie();
+    newMovie.title = this.newTitle;
+    this.movieService.addMovie(newMovie).subscribe((data) => {
+      console.log('success');
+    });
 
   }
 

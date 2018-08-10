@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
+import { EditMovieComponent } from './edit-movie/edit-movie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MoviesListComponent
+    MoviesListComponent,
+    EditMovieComponent
   ],
   imports: [
     BrowserModule,

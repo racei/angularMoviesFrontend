@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Movie } from './Movie';
 import { Observable } from '../../node_modules/rxjs';
 
@@ -19,5 +19,11 @@ export class MovieService {
 
   public deleteMovie(id): Observable<Object> {
     return this.http.delete(this.Address + 'movies/' + id);
+  }
+
+  public addMovie(movie: Movie) : Observable<Object> {
+    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+    return this.http.post(this.Address + 'movies', JSON.stringify(movie), {headers: headers});
+
   }
 }
