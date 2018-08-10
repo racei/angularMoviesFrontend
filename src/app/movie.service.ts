@@ -21,9 +21,9 @@ export class MovieService {
     return this.http.delete(this.Address + 'movies/' + id);
   }
 
-  public addMovie(movie: Movie) : Observable<Object> {
+  public addMovie(movie: Movie) : Observable<Movie> {
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    return this.http.post(this.Address + 'movies', JSON.stringify(movie), {headers: headers});
+    return this.http.post<Movie>(this.Address + 'movies', JSON.stringify(movie), {headers: headers});
 
   }
 }

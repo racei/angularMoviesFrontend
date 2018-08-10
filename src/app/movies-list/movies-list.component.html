@@ -3,10 +3,9 @@
         {{movie.title}}
         {{movie.yearReleased}}
         {{movie.length}}
-
+        <button (click)="deleteMovie(movie.id)">Delete</button>
+        <img src='assets/91.gif' [hidden]="!thinking">
     </li>
-    <button (click)="deleteMovie(movie.id)">Delete</button>
-    <img src='assets/91.gif' [hidden]="!thinking">
 </ul>
 
 <div>

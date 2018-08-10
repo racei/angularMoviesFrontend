@@ -39,10 +39,16 @@ export class MoviesListComponent implements OnInit {
   addMovie() {
     const newMovie = new Movie();
     newMovie.title = this.newTitle;
+    newMovie.yearReleased = Number.parseInt(this.newYearReleased);
+    newMovie.length = this.newLength;
     this.movieService.addMovie(newMovie).subscribe((data) => {
-      console.log('success');
+      this.movies.push(data);
     });
 
+  }
+
+  updateMovie(){
+    
   }
 
   ngOnInit() {
