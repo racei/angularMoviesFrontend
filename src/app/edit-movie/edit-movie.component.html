@@ -1,3 +1,7 @@
-<p>
-  edit-movie works!
-</p>
+{{movie?.title | uppercase}}
+<div *ngIf="movie">
+  Title: <input type='text' [(ngModel)]="movie.title">
+  Year Released: <input type='text' [(ngModel)]="movie.yearReleased">
+  Length: <input type='text' [(ngModel)]="movie.length">
+  <button (click)="saveMovie()">Save</button>
+</div>

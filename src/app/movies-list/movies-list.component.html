@@ -4,6 +4,7 @@
         {{movie.yearReleased}}
         {{movie.length}}
         <button (click)="deleteMovie(movie.id)">Delete</button>
+        <a routerLink="/edit/{{movie.id}}">Edit</a>
         <img src='assets/91.gif' [hidden]="!thinking">
     </li>
 </ul>

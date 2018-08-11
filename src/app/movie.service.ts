@@ -9,6 +9,7 @@ import { Observable } from '../../node_modules/rxjs';
 export class MovieService {
 
   private Address = 'http://localhost:59585/api/';
+  private headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
 
   constructor(private http: HttpClient) { }
 
@@ -17,13 +18,20 @@ export class MovieService {
 
   }
 
+  public getMovie(id): Observable<Movie> {
+    return this.http.get<Movie>(this.Address + 'movies/' + id);
+  }
+
   public deleteMovie(id): Observable<Object> {
     return this.http.delete(this.Address + 'movies/' + id);
   }
 
+  public updateMovie(movie): Observable<Movie> {
+    return this.http.patch<Movie>(this.Address + 'movies/' + movie.id, JSON.stringify(movie), {headers: this.headers});
+  }
+
   public addMovie(movie: Movie) : Observable<Movie> {
-    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    return this.http.post<Movie>(this.Address + 'movies', JSON.stringify(movie), {headers: headers});
+    return this.http.post<Movie>(this.Address + 'movies', JSON.stringify(movie), {headers: this.headers});
 
   }
 }
