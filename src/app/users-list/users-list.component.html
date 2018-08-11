@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let user of users">
+    {{user.name}}
+    <button (click)="deleteUser(user.id)">X</button>
+  </li>
+</ul>
+Add user: <input [(ngModel)]="newName" placeholder="Name"><button (click)="newUser()">Add</button>
