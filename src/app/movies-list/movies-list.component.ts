@@ -47,10 +47,6 @@ export class MoviesListComponent implements OnInit {
 
   }
 
-  updateMovie(){
-    
-  }
-
   ngOnInit() {
   }
 
