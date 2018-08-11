@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Movie } from './Movie';
 import { Observable } from '../../node_modules/rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
-  private Address = 'http://localhost:59585/api/';
+  private Address = environment.apiAddress;
   private headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
 
   constructor(private http: HttpClient) { }
