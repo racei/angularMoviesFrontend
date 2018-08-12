@@ -1,7 +1,23 @@
 {{movie?.title | uppercase}}
 <div *ngIf="movie">
-  Title: <input type='text' [(ngModel)]="movie.title">
-  Year Released: <input type='text' [(ngModel)]="movie.yearReleased">
-  Length: <input type='text' [(ngModel)]="movie.length">
+  <div class="title">
+    Title: <input type='text' [(ngModel)]="movie.title">
+  </div>
+  <div class="yearReleased">
+    Year Released: <input type='text' [(ngModel)]="movie.yearReleased">
+  </div>
+  <div class="length">
+    Length: <input type='text' [(ngModel)]="movie.length">
+  </div>
+  Users
+  <ul>
+    <li *ngFor="let user of movie.usersWatched">
+      {{user.name}}
+    </li>
+  </ul>
+  <select class="selectpicker" data-live-search="true">
+    <option *ngFor="let user of allUsers">{{user.name}}</option>
+  </select>
+  
   <button (click)="saveMovie()">Save</button>
 </div>
