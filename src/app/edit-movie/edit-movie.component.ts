@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { Movie } from '../Movie';
 import { User } from '../User';
 import { UsersService } from '../users.service';
-declare var jquery:any;
+
 @Component({
   selector: 'app-edit-movie',
   templateUrl: './edit-movie.component.html',
@@ -14,7 +14,6 @@ declare var jquery:any;
 export class EditMovieComponent implements OnInit {
   movie: Movie;
   allUsers: User[];
-  filteredUsers: User[];
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
@@ -25,7 +24,6 @@ export class EditMovieComponent implements OnInit {
   ngOnInit() {
     this.getMovie();
     this.getUsers();
-    jquery('.selectpicker').selectpicker();
   }
 
   getUsers(){
@@ -38,7 +36,6 @@ export class EditMovieComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.movieService.getMovie(id).subscribe((data) => {
       this.movie = data;
-      this.filteredUsers = data.usersWatched;
     });
   }
 
@@ -46,6 +43,14 @@ export class EditMovieComponent implements OnInit {
     this.movieService.updateMovie(this.movie).subscribe((data) => {
       //success
     });
+  }
+
+  inputCallback(userID){
+    console.log('I got callllled back');
+    this.allUsers.filter((ele) => ele.id == userID).forEach(x => this.movie.usersWatched.push(x));
+    this.saveMovie();
+    //  Add selected user to movie
+
   }
 
 }

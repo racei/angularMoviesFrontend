@@ -15,9 +15,7 @@
       {{user.name}}
     </li>
   </ul>
-  <select class="selectpicker" data-live-search="true">
-    <option *ngFor="let user of allUsers">{{user.name}}</option>
-  </select>
+  <app-searchable-dropdown *ngIf="allUsers" [options]="allUsers" (selected)="inputCallback($event)"></app-searchable-dropdown>
   
   <button (click)="saveMovie()">Save</button>
 </div>

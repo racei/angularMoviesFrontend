@@ -8,13 +8,15 @@ import { MoviesListComponent } from './movies-list/movies-list.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { UsersListComponent } from './users-list/users-list.component';
+import { SearchableDropdownComponent } from './searchable-dropdown/searchable-dropdown.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesListComponent,
     EditMovieComponent,
-    UsersListComponent
+    UsersListComponent,
+    SearchableDropdownComponent
   ],
   imports: [
     BrowserModule,

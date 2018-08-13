@@ -28,7 +28,7 @@ export class MovieService {
   }
 
   public updateMovie(movie): Observable<Movie> {
-    return this.http.patch<Movie>(this.Address + 'movies/' + movie.id, JSON.stringify(movie), {headers: this.headers});
+    return this.http.put<Movie>(this.Address + 'movies/' + movie.id, JSON.stringify(movie), {headers: this.headers});
   }
 
   public addMovie(movie: Movie) : Observable<Movie> {
