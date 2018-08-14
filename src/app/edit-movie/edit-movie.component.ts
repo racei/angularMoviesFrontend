@@ -40,7 +40,7 @@ export class EditMovieComponent implements OnInit {
     });
   }
 
-  inputCallback(user){
+  updateUsersWatched(user){
     this.movie.usersWatched.push(user);
     this.filteredUsers = this.filteredUsers.filter(x => x.id !== user.id);
     this.saveMovie();

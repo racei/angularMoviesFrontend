@@ -15,7 +15,7 @@
       {{user.name}}
     </li>
   </ul>
-  <app-searchable-dropdown *ngIf="filteredUsers" [options]="filteredUsers" (selected)="inputCallback($event)"></app-searchable-dropdown>
+  <app-searchable-dropdown *ngIf="filteredUsers" [options]="filteredUsers" (selected)="updateUsersWatched($event)"></app-searchable-dropdown>
   
   <button (click)="saveMovie()">Save</button>
 </div>

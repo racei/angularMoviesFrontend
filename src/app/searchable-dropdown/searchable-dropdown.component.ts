@@ -31,7 +31,7 @@ export class SearchableDropdownComponent implements OnInit {
     this.filteredOptions = this.options.filter((ele) => ele.name.toLowerCase().includes(this.searchText.toLowerCase()))
   }
 
-  callback(user: User){
+  addUser(user: User){
     this.selected.emit(user); // Bubble user id to parent component
     this.searchText = '';
   }
