@@ -14,6 +14,7 @@ import { UsersService } from '../users.service';
 export class EditMovieComponent implements OnInit {
   movie: Movie;
   allUsers: User[];
+  filteredUsers: User[];
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
@@ -22,35 +23,27 @@ export class EditMovieComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getMovie();
-    this.getUsers();
-  }
-
-  getUsers(){
     this.userService.getAllUsers().subscribe((data) => {
       this.allUsers = data;
+      const id = +this.route.snapshot.paramMap.get('id');
+      this.movieService.getMovie(id).subscribe((data) => {
+        this.movie = data;
+        const ids = this.movie.usersWatched.map(x => x.id);
+        this.filteredUsers = this.allUsers.filter(x => !ids.includes(x.id));
+      });
     });
   }
 
-  getMovie(){
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.movieService.getMovie(id).subscribe((data) => {
-      this.movie = data;
-    });
-  }
 
   saveMovie(){
     this.movieService.updateMovie(this.movie).subscribe((data) => {
-      //success
     });
   }
 
-  inputCallback(userID){
-    console.log('I got callllled back');
-    this.allUsers.filter((ele) => ele.id == userID).forEach(x => this.movie.usersWatched.push(x));
+  inputCallback(user){
+    this.movie.usersWatched.push(user);
+    this.filteredUsers = this.filteredUsers.filter(x => x.id !== user.id);
     this.saveMovie();
-    //  Add selected user to movie
-
   }
 
 }
