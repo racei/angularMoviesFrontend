@@ -27,7 +27,9 @@ export class MovieService {
     return this.http.delete(this.Address + 'movies/' + id);
   }
 
-  public updateMovie(movie): Observable<Movie> {
+  public updateMovie(movie: Movie): Observable<Movie> {
+    // Lets check if this movie has circular references
+    movie.usersWatched.forEach(x => x.moviesWatched = null);
     return this.http.put<Movie>(this.Address + 'movies/' + movie.id, JSON.stringify(movie), {headers: this.headers});
   }
 
