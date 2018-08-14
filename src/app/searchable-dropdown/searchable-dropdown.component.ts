@@ -33,6 +33,7 @@ export class SearchableDropdownComponent implements OnInit {
 
   callback(user: User){
     this.selected.emit(user); // Bubble user id to parent component
+    this.searchText = '';
   }
 
 }
