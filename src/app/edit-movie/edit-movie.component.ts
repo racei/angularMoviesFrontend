@@ -28,13 +28,15 @@ export class EditMovieComponent implements OnInit {
       const id = +this.route.snapshot.paramMap.get('id');
       this.movieService.getMovie(id).subscribe((data) => {
         this.movie = data;
-        const ids = this.movie.usersWatched.map(x => x.id);
-        this.filteredUsers = this.allUsers.filter(x => !ids.includes(x.id));
+        this.setUsersWatched();
       });
     });
   }
 
-
+  private setUsersWatched(){
+    const ids = this.movie.usersWatched.map(x => x.id);
+    this.filteredUsers = this.allUsers.filter(x => !ids.includes(x.id));
+  }
   saveMovie(){
     this.movieService.updateMovie(this.movie).subscribe((data) => {
     });
@@ -43,6 +45,12 @@ export class EditMovieComponent implements OnInit {
   updateUsersWatched(user){
     this.movie.usersWatched.push(user);
     this.filteredUsers = this.filteredUsers.filter(x => x.id !== user.id);
+    this.saveMovie();
+  }
+
+  removeUser(userID){
+    this.movie.usersWatched = this.movie.usersWatched.filter(x => x.id !== userID);
+    this.setUsersWatched();
     this.saveMovie();
   }
 

@@ -9,10 +9,10 @@
   <div class="length">
     Length: <input type='text' [(ngModel)]="movie.length">
   </div>
-  Users
+  Users who have watched this movie:
   <ul>
     <li *ngFor="let user of movie.usersWatched">
-      {{user.name}}
+      {{user.name}} <button (click)="removeUser(user.id)">X</button>
     </li>
   </ul>
   <app-searchable-dropdown *ngIf="filteredUsers" [options]="filteredUsers" (selected)="updateUsersWatched($event)"></app-searchable-dropdown>
