@@ -9,6 +9,7 @@ import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { UsersListComponent } from './users-list/users-list.component';
 import { SearchableDropdownComponent } from './searchable-dropdown/searchable-dropdown.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SearchableDropdownComponent } from './searchable-dropdown/searchable-dr
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

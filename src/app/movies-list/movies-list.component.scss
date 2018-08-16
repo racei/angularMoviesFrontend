@@ -1,0 +1,17 @@
+.year{
+    color: grey;
+}
+
+.movie-row{
+    margin-top:25px;
+}
+
+.delete-movie{
+    margin: 5px;
+    color:red;
+    cursor: pointer;
+    &:hover {
+        color: darkred;
+
+    }
+}

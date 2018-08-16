@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../Movie';
 import { MovieService } from '../movie.service';
-import { FormsModule } from '@angular/forms';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
-  styleUrls: ['./movies-list.component.css'],
+  styleUrls: ['./movies-list.component.scss'],
   providers: [MovieService],
 })
 export class MoviesListComponent implements OnInit {
@@ -16,6 +16,10 @@ export class MoviesListComponent implements OnInit {
   newTitle = '';
   newLength = '';
   newYearReleased = '';
+
+  // Icons
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
 
   constructor(private movieService: MovieService) {
     this.movieService.getAllMovies().subscribe((data) => {

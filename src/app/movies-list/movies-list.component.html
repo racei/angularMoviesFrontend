@@ -1,13 +1,19 @@
-<ul>
-    <li *ngFor="let movie of movies">
+<div *ngFor="let movie of movies" class="row movie-row">
+    <div class="col-md-10 h2">
         {{movie.title}}
-        {{movie.yearReleased}}
-        {{movie.length}}
-        <button (click)="deleteMovie(movie.id)">Delete</button>
-        <a routerLink="/edit/{{movie.id}}">Edit</a>
+        <span class="year">
+            ({{movie.yearReleased}})
+        </span>
+    </div>
+    <div class="col-md-2">
+        <fa-icon [icon]=faTrashAlt (click)="deleteMovie(movie.id)" size="lg" class="delete-movie"></fa-icon>
+        <a routerLink="/edit/{{movie.id}}">
+            <fa-icon [icon]=faEdit size="lg"></fa-icon>
+        </a>
         <img src='assets/91.gif' [hidden]="!thinking">
-    </li>
-</ul>
+    </div>
+    Running time : {{movie.length}}
+</div>
 
 <div>
     Add new movie
