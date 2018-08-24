@@ -1,23 +1,33 @@
-<h2>{{movie?.title | uppercase}} <span class="year">({{movie?.yearReleased}})</span></h2> 
-<div *ngIf="movie">
-  <div class="title form-group">
-    <label>Title <input type='text' [(ngModel)]="movie.title" class="form-control"></label>
-  </div>
-  <div class="yearReleased form-group">
-    <label>Year Released <input type='text' [(ngModel)]="movie.yearReleased" class="form-control"></label>
-  </div>
-  <div class="length form-group">
-    <label>Length <input type='text' [(ngModel)]="movie.length" class="form-control"></label>
-  </div>
-  <button (click)="saveMovie()" class="btn btn-primary">Save Details</button>
-  <div>
-    Users who have watched this movie:
-    <ul class="list-group">
-      <li *ngFor="let user of movie.usersWatched" class="list-group-item align-middle">
-        <span>{{user.name}}</span> <button (click)="removeUser(user.id)" class="btn btn-outline-danger float-right">X</button>
-      </li>
-    </ul>
-    <app-searchable-dropdown *ngIf="filteredUsers" [options]="filteredUsers" (selected)="updateUsersWatched($event)"></app-searchable-dropdown>
-  </div>
-  
+<div class="container">
+  <h2>{{movie?.title | uppercase}} <span class="year">({{movie?.yearReleased}})</span></h2> 
+  <form [formGroup]="movieForm" *ngIf="movie" (ngSubmit)="saveMovie()">
+    <div class="title form-group">
+      <label>Title <input type='text' id="title" class="form-control" formControlName="title" required></label>
+    </div>
+    <div class="yearReleased form-group">
+      <label>Year Released <input type='text' id="yearReleased" formControlName="yearReleased" class="form-control"></label>
+    </div>
+    <div class="length form-group">
+      <label>Length <input type='text' formControlName="length" class="form-control"></label>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Details</button>
+
+    <div *ngIf="title.invalid && (title.dirty || title.touched)"
+        class="alert alert-danger">
+
+      <div *ngIf="title.errors.required">
+        Name is required.
+      </div>
+    </div>
+    <div>
+      <h3>Users who have watched this movie:</h3>
+      <ul class="list-group">
+        <li *ngFor="let user of movie.usersWatched" class="list-group-item align-middle">
+          <span>{{user.name}}</span> <button (click)="removeUser(user.id)" class="btn btn-outline-danger float-right" ngbTooltip="Remove User" placement="top">X</button>
+        </li>
+      </ul>
+      <app-searchable-dropdown *ngIf="filteredUsers" [options]="filteredUsers" (selected)="updateUsersWatched($event)"></app-searchable-dropdown>
+    </div>
+    
+  </form>
 </div>

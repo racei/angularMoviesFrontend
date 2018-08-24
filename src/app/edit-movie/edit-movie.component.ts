@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Movie } from '../Movie';
 import { User } from '../User';
 import { UsersService } from '../users.service';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-movie',
@@ -15,6 +16,7 @@ export class EditMovieComponent implements OnInit {
   movie: Movie;
   allUsers: User[];
   filteredUsers: User[];
+  movieForm: FormGroup;
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
@@ -22,12 +24,29 @@ export class EditMovieComponent implements OnInit {
     private userService: UsersService
   ) { }
 
+  get title(){
+    return this.movieForm.get('title');
+  }
+
+  get yearReleased(){
+    return this.movieForm.get('yearReleased');
+  }
+
+  get length(){
+    return this.movieForm.get('length');
+  }
+
   ngOnInit() {
     this.userService.getAllUsers().subscribe((data) => {
       this.allUsers = data;
       const id = +this.route.snapshot.paramMap.get('id');
       this.movieService.getMovie(id).subscribe((data) => {
         this.movie = data;
+        this.movieForm = new FormGroup({
+          'title': new FormControl(this.movie.title, Validators.required),
+          'yearReleased': new FormControl(this.movie.yearReleased),
+          'length': new FormControl(this.movie.length)
+        });
         this.setUsersWatched();
       });
     });
@@ -38,6 +57,9 @@ export class EditMovieComponent implements OnInit {
     this.filteredUsers = this.allUsers.filter(x => !ids.includes(x.id));
   }
   saveMovie(){
+    this.movie.title = this.movieForm.get('title').value;
+    this.movie.yearReleased = this.movieForm.get('yearReleased').value;
+    this.movie.length = this.movieForm.get('length').value;
     this.movieService.updateMovie(this.movie).subscribe((data) => {
     });
   }
