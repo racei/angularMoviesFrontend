@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { User } from '../User';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-searchable-dropdown',
@@ -12,6 +13,9 @@ export class SearchableDropdownComponent implements OnInit {
   @Output() selected : EventEmitter<User> = new EventEmitter();
   private filteredOptions : User[] = [];
   private searchText = '';
+
+  // Icons
+  faPlus = faPlus;
 
   constructor() {
   }

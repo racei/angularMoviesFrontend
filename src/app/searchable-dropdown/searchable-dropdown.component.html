@@ -1,7 +1,10 @@
 <h3>Search for users to add</h3>
-<input [(ngModel)]="searchText" (keyup)="filterValues()">
-<div>
-  <div *ngFor="let opt of filteredOptions" (click)="addUser(opt)" class="user-list">
-    {{opt.name}}
+<div class="form-group col-md-10 col-lg-8">
+  <input [(ngModel)]="searchText" (keyup)="filterValues()" placeholder="Start typing to search" class="form-control">
+  <div>
+    <button *ngFor="let opt of filteredOptions" (click)="addUser(opt)" class="user-list btn btn-outline-success">
+      <fa-icon [icon]=faPlus></fa-icon>
+      {{opt.name}}
+    </button>
   </div>
 </div>
