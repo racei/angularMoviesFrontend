@@ -1,0 +1,11 @@
+.list-group{
+    max-width:500px;
+    li{
+        display:table;
+        vertical-align: middle;
+        span{
+            display:table-cell;
+            vertical-align: middle;
+        }
+    }
+}
