@@ -44,8 +44,8 @@ export class EditMovieComponent implements OnInit {
         this.movie = data;
         this.movieForm = new FormGroup({
           'title': new FormControl(this.movie.title, Validators.required),
-          'yearReleased': new FormControl(this.movie.yearReleased),
-          'length': new FormControl(this.movie.length)
+          'yearReleased': new FormControl(this.movie.yearReleased,[Validators.required, Validators.pattern(/\d{4}/)]),
+          'length': new FormControl(this.movie.length, [Validators.required, Validators.pattern(/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/)])
         });
         this.setUsersWatched();
       });
@@ -57,6 +57,9 @@ export class EditMovieComponent implements OnInit {
     this.filteredUsers = this.allUsers.filter(x => !ids.includes(x.id));
   }
   saveMovie(){
+    if(!this.movieForm.valid){
+      return;
+    }
     this.movie.title = this.movieForm.get('title').value;
     this.movie.yearReleased = this.movieForm.get('yearReleased').value;
     this.movie.length = this.movieForm.get('length').value;

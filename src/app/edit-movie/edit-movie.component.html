@@ -19,6 +19,22 @@
         Name is required.
       </div>
     </div>
+    <div *ngIf="yearReleased.invalid && (yearReleased.dirty || yearReleased.touched)" class="alert alert-danger">
+      <div *ngIf="yearReleased.errors.pattern">
+        Year should be in pattern YYYY.
+      </div>
+      <div *ngIf="yearReleased.errors.required">
+        Year is required.
+      </div>
+    </div>
+    <div *ngIf="length.invalid && (length.dirty || length.touched)" class="alert alert-danger">
+      <div *ngIf="length.errors.pattern">
+        Length should be in pattern HH:MM:SS.
+      </div>
+      <div *ngIf="length.errors.required">
+        Length is required.
+      </div>
+    </div>
     <div>
       <h3>Users who have watched this movie:</h3>
       <ul class="list-group">
