@@ -13,6 +13,7 @@ import { SearchableDropdownComponent } from './searchable-dropdown/searchable-dr
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddMovieComponent } from './add-movie/add-movie.component';
+import { AddMovieWrapperComponent } from './add-movie-wrapper/add-movie-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AddMovieComponent } from './add-movie/add-movie.component';
     EditMovieComponent,
     UsersListComponent,
     SearchableDropdownComponent,
-    AddMovieComponent
+    AddMovieComponent,
+    AddMovieWrapperComponent
   ],
   imports: [
     BrowserModule,

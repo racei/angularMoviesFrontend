@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { UsersListComponent } from './users-list/users-list.component';
-import { AddMovieComponent } from './add-movie/add-movie.component';
+import { AddMovieWrapperComponent } from './add-movie-wrapper/add-movie-wrapper.component';
 
 const routes: Routes = [
   { path: 'movies', component: MoviesListComponent },
   { path: 'edit/:id', component: EditMovieComponent },
   { path: 'users', component: UsersListComponent },
-  { path: 'movies/add', component: AddMovieComponent }
+  { path: 'movies/add', component: AddMovieWrapperComponent }
 ];
 
 @NgModule({
