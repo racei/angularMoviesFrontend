@@ -3,21 +3,26 @@
     <button class="btn btn-success" routerLink="/movies/add">Add Movie</button>
 </h1>
 
-<div *ngFor="let movie of movies" class="row movie-row">
-    <div class="col-md-12 h3">
-        {{movie.title}}
-        <span class="year">
-            ({{movie.yearReleased}})
-        </span>
-        <div class="float-right">
-            <fa-icon [icon]=faTrashAlt (click)="deleteMovie(movie.id)" class="delete-movie"></fa-icon>
-            <a routerLink="/edit/{{movie.id}}">
-                <fa-icon [icon]=faEdit size="lg"></fa-icon>
-            </a>
-            <img src='assets/91.gif' [hidden]="!thinking">
+<div *ngFor="let movie of movies">
+    <div class="row movie-row">
+        <div class="col-md-12 h3">
+            {{movie.title}}
+            <span class="year">
+                ({{movie.yearReleased}})
+            </span>
+            <div class="float-right">
+                <fa-icon [icon]=faTrashAlt (click)="deleteMovie(movie.id)" class="delete-movie"></fa-icon>
+                <a routerLink="/edit/{{movie.id}}">
+                    <fa-icon [icon]=faEdit size="lg"></fa-icon>
+                </a>
+                <img src='assets/91.gif' [hidden]="!thinking">
+            </div>
         </div>
     </div>
-    <div class="col-md-12">
+    <div>
         Running time : {{movie.length}}
+    </div>
+    <div>
+        Number of users who have watched : {{movie.usersWatched.length}}
     </div>
 </div>
