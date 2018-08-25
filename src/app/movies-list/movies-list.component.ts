@@ -13,9 +13,6 @@ export class MoviesListComponent implements OnInit {
 
   private movies: Movie[] = [];
   thinking = false;
-  newTitle = '';
-  newLength = '';
-  newYearReleased = '';
 
   // Icons
   faEdit = faEdit;
@@ -38,17 +35,6 @@ export class MoviesListComponent implements OnInit {
       });
 
     });
-  }
-
-  addMovie() {
-    const newMovie = new Movie();
-    newMovie.title = this.newTitle;
-    newMovie.yearReleased = Number.parseInt(this.newYearReleased);
-    newMovie.length = this.newLength;
-    this.movieService.addMovie(newMovie).subscribe((data) => {
-      this.movies.push(data);
-    });
-
   }
 
   ngOnInit() {
