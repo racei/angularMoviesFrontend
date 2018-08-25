@@ -56,27 +56,20 @@ export class EditMovieComponent implements OnInit {
     const ids = this.movie.usersWatched.map(x => x.id);
     this.filteredUsers = this.allUsers.filter(x => !ids.includes(x.id));
   }
-  saveMovie(){
-    if(!this.movieForm.valid){
-      return;
-    }
-    this.movie.title = this.movieForm.get('title').value;
-    this.movie.yearReleased = this.movieForm.get('yearReleased').value;
-    this.movie.length = this.movieForm.get('length').value;
-    this.movieService.updateMovie(this.movie).subscribe((data) => {
-    });
+  saveMovie(movie: Movie){
+    this.movieService.updateMovie(movie).subscribe((data) =>{});
   }
 
   updateUsersWatched(user){
     this.movie.usersWatched.push(user);
     this.filteredUsers = this.filteredUsers.filter(x => x.id !== user.id);
-    this.saveMovie();
+    this.saveMovie(this.movie);
   }
 
   removeUser(userID){
     this.movie.usersWatched = this.movie.usersWatched.filter(x => x.id !== userID);
     this.setUsersWatched();
-    this.saveMovie();
+    this.saveMovie(this.movie);
   }
 
 }

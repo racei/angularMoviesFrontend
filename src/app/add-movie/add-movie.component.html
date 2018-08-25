@@ -1,13 +1,25 @@
 <div class="">
-    <h2>Add new movie</h2>
-    <div class="form-group">
-        <label>Title: <input class="form-control" type='text' [(ngModel)]="newTitle"></label>
-    </div>
-    <div class="form-group">
-        <label>Length: <input class="form-control" type='text' [(ngModel)]="newLength" placeholder="00:00:00"></label>
-    </div>
-    <div class="form-group">
-        <label>Year Released: <input class="form-control" type='text' [(ngModel)]="newYearReleased"></label>
-    </div>
-    <button (click)="addMovie()">+</button>
+    <form [formGroup]="movieForm" *ngIf="movie" (ngSubmit)="addMovie()">
+        <div class="col-md-6">
+            <div class="title form-group">
+                <label>Title <input type='text' id="title" class="form-control" formControlName="title" required></label>
+                <div *ngIf="formErrors.title" class="alert alert-danger">
+                    {{ formErrors.title }}
+                </div>
+            </div>
+            <div class="yearReleased form-group">
+                <label>Year Released <input type='text' id="yearReleased" formControlName="yearReleased" class="form-control"></label>
+                <div *ngIf="formErrors.yearReleased" class="alert alert-danger">
+                    {{ formErrors.yearReleased }}
+                </div>
+            </div>
+            <div class="length form-group">
+                <label>Length <input type='text' formControlName="length" class="form-control"></label>
+                <div *ngIf="formErrors.length" class="alert alert-danger">
+                    {{ formErrors.length }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">{{buttonText}}</button>
+        </div>
+    </form>
 </div>

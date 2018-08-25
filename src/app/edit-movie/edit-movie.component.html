@@ -1,42 +1,7 @@
-<div class="container">
+<div class="container" *ngIf="movie">
   <h2>{{movie?.title | uppercase}} <span class="year">({{movie?.yearReleased}})</span></h2> 
-  <form [formGroup]="movieForm" *ngIf="movie" (ngSubmit)="saveMovie()">
-    <div class="col-md-6">
-      <div class="title form-group">
-        <label>Title <input type='text' id="title" class="form-control" formControlName="title" required></label>
-      </div>
-      <div class="yearReleased form-group">
-        <label>Year Released <input type='text' id="yearReleased" formControlName="yearReleased" class="form-control"></label>
-      </div>
-      <div class="length form-group">
-        <label>Length <input type='text' formControlName="length" class="form-control"></label>
-      </div>
-      <button type="submit" class="btn btn-primary">Save Details</button>
-
-      <div *ngIf="title.invalid && (title.dirty || title.touched)"
-          class="alert alert-danger">
-        <div *ngIf="title.errors.required">
-          Name is required.
-        </div>
-      </div>
-      <div *ngIf="yearReleased.invalid && (yearReleased.dirty || yearReleased.touched)" class="alert alert-danger">
-        <div *ngIf="yearReleased.errors.pattern">
-          Year should be in pattern YYYY.
-        </div>
-        <div *ngIf="yearReleased.errors.required">
-          Year is required.
-        </div>
-      </div>
-      <div *ngIf="length.invalid && (length.dirty || length.touched)" class="alert alert-danger">
-        <div *ngIf="length.errors.pattern">
-          Length should be in pattern HH:MM:SS.
-        </div>
-        <div *ngIf="length.errors.required">
-          Length is required.
-        </div>
-      </div>
-    </div>
     
+    <app-add-movie [movie]="movie" [buttonText]="'Save Details'" (persist)="saveMovie($event)"></app-add-movie>
     <div>
       <h3>Users who have watched this movie:</h3>
       <div class="col-md-6">
@@ -49,5 +14,4 @@
       <app-searchable-dropdown *ngIf="filteredUsers" [options]="filteredUsers" (selected)="updateUsersWatched($event)"></app-searchable-dropdown>
     </div>
     
-  </form>
 </div>
