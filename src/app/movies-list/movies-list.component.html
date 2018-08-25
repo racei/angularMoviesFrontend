@@ -1,5 +1,7 @@
+<h1 class="display-2">Movies</h1>
+
 <div *ngFor="let movie of movies" class="row movie-row">
-    <div class="col-md-12 h2">
+    <div class="col-md-12 h3">
         {{movie.title}}
         <span class="year">
             ({{movie.yearReleased}})
@@ -12,13 +14,21 @@
             <img src='assets/91.gif' [hidden]="!thinking">
         </div>
     </div>
-    Running time : {{movie.length}}
+    <div class="col-md-12">
+        Running time : {{movie.length}}
+    </div>
 </div>
 
-<div>
-    Add new movie
-    <label>Title: <input type='text' [(ngModel)]="newTitle"></label>
-    <label>Length: <input type='text' [(ngModel)]="newLength" placeholder="00:00:00"></label>
-    <label>Year Released: <input type='text' [(ngModel)]="newYearReleased"></label>
+<div class="">
+    <h2>Add new movie</h2>
+    <div class="form-group">
+        <label>Title: <input class="form-control" type='text' [(ngModel)]="newTitle"></label>
+    </div>
+    <div class="form-group">
+        <label>Length: <input class="form-control" type='text' [(ngModel)]="newLength" placeholder="00:00:00"></label>
+    </div>
+    <div class="form-group">
+        <label>Year Released: <input class="form-control" type='text' [(ngModel)]="newYearReleased"></label>
+    </div>
     <button (click)="addMovie()">+</button>
 </div>
