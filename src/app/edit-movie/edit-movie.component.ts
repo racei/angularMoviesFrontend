@@ -24,29 +24,12 @@ export class EditMovieComponent implements OnInit {
     private userService: UsersService
   ) { }
 
-  get title(){
-    return this.movieForm.get('title');
-  }
-
-  get yearReleased(){
-    return this.movieForm.get('yearReleased');
-  }
-
-  get length(){
-    return this.movieForm.get('length');
-  }
-
   ngOnInit() {
     this.userService.getAllUsers().subscribe((data) => {
       this.allUsers = data;
       const id = +this.route.snapshot.paramMap.get('id');
       this.movieService.getMovie(id).subscribe((data) => {
         this.movie = data;
-        this.movieForm = new FormGroup({
-          'title': new FormControl(this.movie.title, Validators.required),
-          'yearReleased': new FormControl(this.movie.yearReleased,[Validators.required, Validators.pattern(/\d{4}/)]),
-          'length': new FormControl(this.movie.length, [Validators.required, Validators.pattern(/^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/)])
-        });
         this.setUsersWatched();
       });
     });
