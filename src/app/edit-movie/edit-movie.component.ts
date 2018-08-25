@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { Movie } from '../Movie';
 import { User } from '../User';
 import { UsersService } from '../users.service';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-movie',
