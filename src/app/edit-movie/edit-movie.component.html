@@ -14,7 +14,6 @@
 
     <div *ngIf="title.invalid && (title.dirty || title.touched)"
         class="alert alert-danger">
-
       <div *ngIf="title.errors.required">
         Name is required.
       </div>
@@ -35,6 +34,7 @@
         Length is required.
       </div>
     </div>
+    
     <div>
       <h3>Users who have watched this movie:</h3>
       <ul class="list-group">
