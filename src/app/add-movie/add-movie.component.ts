@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../Movie';
 import { MovieService } from '../movie.service';
 import { Router } from '@angular/router'
-import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormGroup, FormControl, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-movie',
@@ -75,8 +75,22 @@ export class AddMovieComponent implements OnInit {
       'pattern': 'Length must be in HH:MM:SS or HH:MM format'
     }
   }
+  private markAllDirty(control: AbstractControl) {
+      if(control.hasOwnProperty('controls')) {
+          control.markAsDirty() // mark group
+          let ctrl = <any>control;
+          for (let inner in ctrl.controls) {
+              this.markAllDirty(ctrl.controls[inner] as AbstractControl);
+          }
+      }
+      else {
+          (<FormControl>(control)).markAsDirty();
+      }
+  }
 
   addMovie() {
+    this.markAllDirty(this.movieForm);
+    this.onValueChanged();
     if(!this.movieForm.valid){
       return;
     }
