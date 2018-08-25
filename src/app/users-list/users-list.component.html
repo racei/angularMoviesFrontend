@@ -1,7 +1,14 @@
-<ul>
-  <li *ngFor="let user of users">
-    {{user.name}}
-    <button (click)="deleteUser(user.id)">X</button>
-  </li>
-</ul>
-Add user: <input [(ngModel)]="newName" placeholder="Name"><button (click)="newUser()">Add</button>
+<h1 class="display-2">Users</h1>
+
+<div class="row">
+  <div *ngFor="let user of users" class="col-md-3 col-sm-6">
+    <div class="user">
+      <span>{{user.name}}</span>
+      <button (cdivck)="deleteUser(user.id)" class="btn btn-outline-danger float-right">X</button>
+    </div>
+  </div>
+</div>
+<div class="addUser">
+  <h2>Add user</h2>
+  <input [(ngModel)]="newName" placeholder="Name"><button (click)="newUser()">Add</button>
+</div>

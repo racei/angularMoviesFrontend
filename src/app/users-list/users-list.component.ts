@@ -5,7 +5,7 @@ import { User } from '../User';
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.css']
+  styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
   private users : User[];
@@ -25,6 +25,7 @@ export class UsersListComponent implements OnInit {
     this.userService.addUser(user).subscribe((data) => {
       // user added successfully
       this.users.push(data);
+      this.newName = '';
     });
   }
 

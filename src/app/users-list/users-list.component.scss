@@ -1,0 +1,16 @@
+.user{
+    margin-top:10px;
+    padding:10px;
+    display:table;
+    border: 1px solid grey;
+    vertical-align:middle;
+    width:100%;
+    span{
+        display:table-cell;
+        vertical-align:middle;
+    }
+}
+
+.addUser{
+    margin-top:20px;
+}
